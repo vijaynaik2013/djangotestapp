@@ -1,0 +1,19 @@
+<h3>Blessed to have such a wonderful day today...!!</h3>
+
+<form method="post" action="/">
+    {% csrf_token %}
+    {{form.Title}}
+    <input type="submit" name="create task">
+</form>
+
+{% for kuberapp in Tasks %}
+    <div>
+        <a href="{% url 'update_task' kuberapp.id %}">Update</a>
+        <a href="{% url 'delete' kuberapp.id %}">Delete</a>
+        {% if kuberapp.Complete == True %}
+        <strike>{{kuberapp}}</strike>
+        {% else %}
+        <span>{{kuberapp}}</span>
+        {% endif %}
+    </div>
+{% endfor %}
